@@ -1,6 +1,7 @@
 ﻿using AutoStocker.Application.Dtos;
 using AutoStocker.Application.Services.Abstracts;
 using AutoStocker.Domain.Dtos;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoStocker.Api.Controllers
@@ -34,6 +35,13 @@ namespace AutoStocker.Api.Controllers
         //    var result = await _productService.AddProductAsync(dto);
         //    return Ok(result);
         //}
+
+        [HttpGet("csrf-token")]
+        public IActionResult GetCsrfToken([FromServices] IAntiforgery antiforgery)
+        {
+            var tokens = antiforgery.GetAndStoreTokens(HttpContext);
+            return Ok(new { token = tokens.RequestToken });
+        }
     }
 
 }
