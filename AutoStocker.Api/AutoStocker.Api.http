@@ -1,0 +1,6 @@
+@AutoStocker.Api_HostAddress = http://localhost:5229
+
+GET {{AutoStocker.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
