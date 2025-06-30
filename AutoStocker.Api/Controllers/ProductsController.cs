@@ -29,19 +29,18 @@ namespace AutoStocker.Api.Controllers
 
 
         //buraya api den ürünler gelir. html kısmına daha sonra bakılacak.
-        //[HttpPost]
-        //public async Task<IActionResult> Products([FromBody] ProductCreateDto dto)
-        //{
-        //    var result = await _productService.AddProductAsync(dto);
-        //    return Ok(result);
-        //}
+
 
         [HttpGet("csrf-token")]
         public IActionResult GetCsrfToken([FromServices] IAntiforgery antiforgery)
         {
+            if (antiforgery == null)
+            {
+                throw new ArgumentNullException("Antiforgery service is not available.");
+            }
+
             var tokens = antiforgery.GetAndStoreTokens(HttpContext);
             return Ok(new { token = tokens.RequestToken });
         }
     }
-
 }

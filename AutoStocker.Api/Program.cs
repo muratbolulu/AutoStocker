@@ -1,3 +1,4 @@
+using AutoStocker.Api.ExceptionHandling;
 using AutoStocker.Application.Services.Abstracts;
 using AutoStocker.Application.Services.Concretes;
 using AutoStocker.Domain.Repositories.Abstract;
@@ -46,6 +47,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseRouting();
 app.UseRateLimiter();
 app.UseAuthorization();
