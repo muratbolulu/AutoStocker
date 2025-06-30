@@ -16,12 +16,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IProductService, ProductService>();
-builder.Services.AddSingleton<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductRepository, InMemoryProductRepository>();
+builder.Services.AddScoped<IOrderRepository, InMemoryOrderRepository>();
 
-builder.Services.AddSingleton<IFakeStoreClient, FakeStoreClient>();
-builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
-builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
+builder.Services.AddHttpClient<IFakeStoreClient, FakeStoreClient>();
 
 builder.Services.AddRateLimiter(_ => _
     .AddFixedWindowLimiter(policyName: "fixed", options =>
