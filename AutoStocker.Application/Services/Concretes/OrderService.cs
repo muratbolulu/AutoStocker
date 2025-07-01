@@ -2,11 +2,6 @@
 using AutoStocker.Domain.Entities;
 using AutoStocker.Domain.Repositories.Abstract;
 using AutoStocker.Infrastructure.Clients.FakeStore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoStocker.Application.Services.Concretes
 {

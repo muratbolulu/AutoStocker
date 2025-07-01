@@ -40,6 +40,14 @@ namespace AutoStocker.Application.Services.Concretes
             var products = await _productRepository.GetLowStockAsync();
             return products.Select(p => new ProductDto(p)).ToList();
         }
+
+        public async Task AddOrUpdateAsync(Product product)
+        {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
+            await _productRepository.AddOrUpdateAsync(product);
+        }
     }
 
 

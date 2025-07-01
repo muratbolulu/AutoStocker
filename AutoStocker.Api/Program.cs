@@ -18,8 +18,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IProductRepository, InMemoryProductRepository>();
-builder.Services.AddScoped<IOrderRepository, InMemoryOrderRepository>();
+builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>(); //AddScoped idi düzeltildi. yoksa yakalamýyordu.
+builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
 
 builder.Services.AddHttpClient<IFakeStoreClient, FakeStoreClient>();
 
